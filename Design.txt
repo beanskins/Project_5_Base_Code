@@ -1,0 +1,7 @@
+LoadImages() and Load() were left in Functions.java because their code seemed to be mostly reliant on the "Scanner" class which was not a class made for this project.
+clamp() was left in functions because it was a single return statement without any classes that only computed a mathematical function.
+All of the create functions were left in functions because they are creating new objects and you can't call an object to create itself.
+getImages() was picked to stay in Functions.java rather than ImageStore because it's code did not depend on an ImageStore class but rather a mapping of Strings and Lists of PImages.
+All of the parses were chosen to stay in Functions.java because their code was reliant on the length of a String passed into it and not the other WorldModel or ImageStore parameters.
+findOpenAround() was chosen to be put in WorldModel instead of Point because the two for loops checked to see if a WorldModel class was within the bounds of a certain point, thus, the WorldModel object was the deciding factor.
+ processLine() was also chosen to remain in Functions.java because it's code was dependent on a List of Strings in an if statement and a switch statement.
