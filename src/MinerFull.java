@@ -70,7 +70,10 @@ public class MinerFull extends MinerTypes {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-
+        MinerNotFull miner = Factory.createMinerNotFull(this.getId(), this.getResourceLimit(),
+                this.getPosition(), this.getActionPeriod(),
+                this.getAnimationPeriod(),
+                this.getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
