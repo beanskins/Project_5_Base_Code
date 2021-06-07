@@ -19,6 +19,17 @@ public class Factory {
         return new MinerBurnt(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 
+    public static FireZombie createFireZombie(
+            String id,
+            Point position,
+            List<PImage> images,
+            int actionPeriod,
+            int animationPeriod
+    ){
+        return new FireZombie(id, position,images,actionPeriod,animationPeriod);
+    }
+
+
     public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
     {
         return new Blacksmith(id, position, images);
