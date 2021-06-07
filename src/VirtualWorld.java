@@ -1,5 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import processing.core.*;
@@ -163,6 +166,20 @@ public final class VirtualWorld extends PApplet
                     break;
             }
         }
+    }
+
+    private Point mouseToPoint()
+    {
+        return new Point(mouseX/TILE_WIDTH + view.getViewport().getCol(), mouseY/TILE_WIDTH + view.getViewport().getRow());
+    }
+
+    public void mousePressed() {
+        Point pressed = mouseToPoint();
+        for (int i = 0; i < 3; i++) // makes a 3x3 grid of fire background
+            for (int j = 0; j < 3; j++)
+                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("fire")));
+
+        redraw();
     }
 
     public static void main(String[] args) {

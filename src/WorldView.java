@@ -26,6 +26,10 @@ public final class WorldView
         this.viewport = new Viewport(numRows, numCols);
     }
 
+    public Viewport getViewport() {
+        return viewport;
+    }
+
     public void shiftView(int colDelta, int rowDelta) {
         int newCol = Functions.clamp(this.viewport.getCol() + colDelta, 0,
                 this.world.getNumCols() - this.viewport.getNumCols());
@@ -48,6 +52,7 @@ public final class WorldView
             }
         }
     }
+
 
     private void drawEntities() {
         for (Entity entity : this.world.getEntities()) {
