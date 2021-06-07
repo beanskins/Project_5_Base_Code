@@ -43,9 +43,10 @@ public class Miner_Burnt extends MinerTypes {
             EventScheduler scheduler,
             ImageStore imageStore)
     {
-        Miner_Burnt miner = Factory.createMinerBurnt(this.getId(),
-                this.getPosition(), this.getImages(), this.getResourceLimit(),this.getActionPeriod(),
-                this.getAnimationPeriod());
+        MinerNotFull miner = Factory.createMinerNotFull(this.getId(), this.getResourceLimit(),
+                this.getPosition(), this.getActionPeriod(),
+                this.getAnimationPeriod(),
+                this.getImages());
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
