@@ -8,14 +8,15 @@ public class Factory {
     private static final int QUAKE_ACTION_PERIOD = 1100;
     private static final int QUAKE_ANIMATION_PERIOD = 100;
 
-    public static BurntMiner createBurntMiner(
+    public static Miner_Burnt createMinerBurnt(
             String id,
             Point position,
             List<PImage> images,
+            int resourceLimit,
             int actionPeriod,
             int animationPeriod)
     {
-        return new BurntMiner(id, position, images, actionPeriod, animationPeriod);
+        return new Miner_Burnt(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 
     public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
