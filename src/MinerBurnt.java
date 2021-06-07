@@ -3,8 +3,8 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Miner_Burnt extends MinerTypes {
-    public Miner_Burnt(
+public class MinerBurnt extends MinerTypes {
+    public MinerBurnt(
             String id,
             Point position,
             List<PImage> images,
