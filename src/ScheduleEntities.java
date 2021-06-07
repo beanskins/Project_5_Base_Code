@@ -23,7 +23,6 @@ public abstract class ScheduleEntities extends Entity {
         scheduler.scheduleEvent(this,
                 Factory.createActivityAction(this, world, imageStore),
                 this.actionPeriod);
-
     }
 
     protected abstract void executeActivity(

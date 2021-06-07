@@ -18,6 +18,10 @@ public class Factory {
         return new BurntMiner(id, position, images, actionPeriod, animationPeriod);
     }
 
+    public static Fire createFire(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+        return new Fire(id, position, images, actionPeriod, animationPeriod);
+    }
+
     public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
     {
         return new Blacksmith(id, position, images);

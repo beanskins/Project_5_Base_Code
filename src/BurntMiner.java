@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 public class BurntMiner extends MovingEntity {
 
+
+
     public BurntMiner(String id,
                       Point position,
                       List<PImage> images,
@@ -30,7 +32,7 @@ public class BurntMiner extends MovingEntity {
 
             if (this.moveTo(world, blobTarget.get(), scheduler)) {
                 ScheduleEntities quake = Factory.createQuake(tgtPos,
-                        imageStore.getImageList(QUAKE_KEY));
+                        imageStore.getImageList("quake")); //TODO: change this
 
                 world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();
@@ -42,6 +44,7 @@ public class BurntMiner extends MovingEntity {
                 Factory.createActivityAction(this, world, imageStore),
                 nextPeriod);
     }
+
 
     public boolean moveTo(
             WorldModel world,

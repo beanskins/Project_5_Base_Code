@@ -175,9 +175,25 @@ public final class VirtualWorld extends PApplet
 
     public void mousePressed() {
         Point pressed = mouseToPoint();
-        for (int i = 0; i < 3; i++) // makes a 3x3 grid of fire background
-            for (int j = 0; j < 3; j++)
-                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("fire")));
+
+        for (int i = -1; i < 2; i++) // makes a 3x3 grid of fire background
+            for (int j = -1; j < 2; j++)
+                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("dirt")));
+
+
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                AnimatingEntities fire = new Fire("id", new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"), 0, 10);
+                world.addEntity(Factory.createFire("fire",
+                        new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"),
+                        0, 10));
+                fire.scheduleActions(scheduler, world, imageStore);
+            }
+        }
+
+
+
+
 
         redraw();
     }
