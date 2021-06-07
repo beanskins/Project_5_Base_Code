@@ -8,19 +8,27 @@ public class Factory {
     private static final int QUAKE_ACTION_PERIOD = 1100;
     private static final int QUAKE_ANIMATION_PERIOD = 100;
 
-    public static BurntMiner createBurntMiner(
+    public static MinerBurnt createMinerBurnt(
+            String id,
+            Point position,
+            List<PImage> images,
+            int resourceLimit,
+            int actionPeriod,
+            int animationPeriod)
+    {
+        return new MinerBurnt(id, position, images, resourceLimit, actionPeriod, animationPeriod);
+    }
+
+    public static FireZombie createFireZombie(
             String id,
             Point position,
             List<PImage> images,
             int actionPeriod,
-            int animationPeriod)
-    {
-        return new BurntMiner(id, position, images, actionPeriod, animationPeriod);
+            int animationPeriod
+    ){
+        return new FireZombie(id, position,images,actionPeriod,animationPeriod);
     }
 
-    public static Fire createFire(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
-        return new Fire(id, position, images, actionPeriod, animationPeriod);
-    }
 
     public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
     {
