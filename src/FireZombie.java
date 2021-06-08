@@ -21,7 +21,7 @@ public class FireZombie extends MovingEntity {
     {
         PathingStrategy strat = new AStarPathingStrategy();
 
-        Predicate<Point> canPassThrough = (s1) -> world.withinBounds(s1) && !world.isOccupied(s1);
+        Predicate<Point> canPassThrough = (s1) -> world.withinBounds(s1) && !(world.getOccupant(s1).isPresent() && !(world.getOccupant(s1).get() instanceof Fire));
 
         BiPredicate<Point, Point> withinReach = (var1, var2) -> var1.adjacent(var2);
 
@@ -72,14 +72,13 @@ public class FireZombie extends MovingEntity {
 
             MinerTypes tminer = (MinerTypes)target.get();
 
-            MinerBurnt miner = Factory.createMinerBurnt(tminer.getId(),tminer.getPosition(),
-                    tminer.getImages(),         //get burnt images
-                    tminer.getResourceLimit(),
-                    tminer.getActionPeriod(),
-                    tminer.getAnimationPeriod());
+            FireZombie nZom = Factory.createFireZombie(this.getId(),tminer.getPosition(),
+                    this.getImages(),         //get burnt images
+                    this.getActionPeriod(),
+                    this.getAnimationPeriod());
 
-            world.addEntity(miner);
-            miner.scheduleActions(scheduler, world, imageStore);
+            world.addEntity(nZom);
+            nZom.scheduleActions(scheduler, world, imageStore);
         }
     }
 

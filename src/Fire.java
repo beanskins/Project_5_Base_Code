@@ -13,7 +13,7 @@ public class Fire extends AnimatingEntities{
         Optional<Entity> target =
                 world.findNearest(this.getPosition(), MinerTypes.class);
 
-        if (this.getPosition() == target.get().getPosition()){
+        if (target.isPresent() && this.getPosition() == target.get().getPosition()){
             MinerTypes tminer = (MinerTypes)target.get();
 
             MinerBurnt miner = Factory.createMinerBurnt(tminer.getId(),tminer.getPosition(),
