@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 import processing.core.*;
 
@@ -175,20 +173,51 @@ public final class VirtualWorld extends PApplet
 
     public void mousePressed() {
         Point pressed = mouseToPoint();
+        Random rand = new Random();
 
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("dirt")));
-                if (!(world.isOccupied(new Point(pressed.x + i, pressed.y + j)))) {
-                    AnimatingEntities fire = new Fire("id", new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"), 0, 10);
-                    world.addEntity(Factory.createFire("fire",
-                            new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"),
-                            0, 10));
-                    fire.scheduleActions(scheduler, world, imageStore);
-                }
+                Point affected = new Point(pressed.x + i, pressed.y + j);
+                world.setBackground(affected, new Background(imageStore.getImageList("dirt")));
             }
         }
 
+        for (int i = -1; i < 2; i++) { //adding randomness to top edge of the dirt
+            Point outline = new Point(pressed.x + i, pressed.y - 2);
+            int randomInt = rand.nextInt(3);
+            if (randomInt == 1)
+                world.setBackground(outline, new Background(imageStore.getImageList("dirt")));
+        }
+
+        for (int j = -1; j < 2; j++) { //adding randomness to right edge of the dirt
+            Point outline = new Point(pressed.x + 2, pressed.y + j);
+            int randomInt = rand.nextInt(3);
+            if (randomInt == 1)
+                world.setBackground(outline, new Background(imageStore.getImageList("dirt")));
+        }
+
+        for (int i = -1; i < 2; i++) { //adding randomness to bottom edge of the dirt
+            Point outline = new Point(pressed.x + i, pressed.y + 2);
+            int randomInt = rand.nextInt(3);
+            if (randomInt == 1)
+                world.setBackground(outline, new Background(imageStore.getImageList("dirt")));
+        }
+
+        for (int j = -1; j < 2; j++) { //adding randomness to left edge of the dirt
+            Point outline = new Point(pressed.x - 2, pressed.y + j);
+            int randomInt = rand.nextInt(3);
+            if (randomInt == 1)
+                world.setBackground(outline, new Background(imageStore.getImageList("dirt")));
+        }
+
+        if (!(world.isOccupied(pressed)) || world.getOccupant(pressed).get() instanceof MinerTypes ) {
+            AnimatingEntities fire = new Fire("id", pressed, imageStore.getImageList("fire"), 0, 10);
+            world.addEntity(Factory.createFire("fire",
+                    pressed, imageStore.getImageList("fire"),
+                            0, 10));
+                    fire.scheduleActions(scheduler, world, imageStore);
+           // world.addEntity(Factory.createFireZombie()); //TODO: I added this in as a placeholder because this is where the fire zombie should go
+        }
         redraw();
     }
 
