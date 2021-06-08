@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public class Fire extends AnimatingEntities{
 
-    private static int fireSpeedBoost = 700;
+    private static final int fireSpeedBoost = 700;
 
     public Fire(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
