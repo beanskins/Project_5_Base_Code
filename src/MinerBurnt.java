@@ -15,6 +15,23 @@ public class MinerBurnt extends MinerTypes {
         super(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 
+
+    public  void executeActivity(
+            WorldModel world,
+            ImageStore imageStore,
+            EventScheduler scheduler)
+    {
+        Optional<Entity> water =
+                world.findNearest(this.getPosition(), Obstacle.class);
+        if (water.isPresent() && this.moveTo(world, water.get(), scheduler)){
+            this.transformClean(world, scheduler, imageStore);
+        }
+        scheduler.scheduleEvent(this,
+                Factory.createActivityAction(this, world, imageStore),
+                this.getActionPeriod());
+    }
+
+
     public boolean moveTo(
             WorldModel world,
             Entity target,
@@ -44,9 +61,9 @@ public class MinerBurnt extends MinerTypes {
             ImageStore imageStore)
     {
         MinerNotFull miner = Factory.createMinerNotFull(this.getId(), this.getResourceLimit(),
-                this.getPosition(), this.getActionPeriod(),
+                this.getPosition(), this.getActionPeriod() + Fire.getFireSpeedBoost(),
                 this.getAnimationPeriod(),
-                this.getImages());
+                imageStore.getImageList("miner"));
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
@@ -55,17 +72,4 @@ public class MinerBurnt extends MinerTypes {
         miner.scheduleActions(scheduler, world, imageStore);
     }
 
-
-
-    public  void executeActivity(
-            WorldModel world,
-            ImageStore imageStore,
-            EventScheduler scheduler)
-    {
-        Optional<Entity> water =
-                world.findNearest(this.getPosition(), Obstacle.class);
-        if (water.isPresent() && this.moveTo(world, water.get(), scheduler)){
-            this.transformClean(world, scheduler, imageStore);
-        }
-    }
 }

@@ -42,9 +42,6 @@ public class FireZombie extends MovingEntity {
             Entity target,
             EventScheduler scheduler) {
         if (this.getPosition().adjacent(target.getPosition())) {
-
-            world.removeEntity(target);
-            scheduler.unscheduleAllEvents(target);
             return true;
         } else {
             Point nextPos = this.nextPosition(world, target.getPosition());
@@ -73,13 +70,20 @@ public class FireZombie extends MovingEntity {
             MinerTypes tminer = (MinerTypes)target.get();
 
             FireZombie nZom = Factory.createFireZombie(this.getId(),tminer.getPosition(),
-                    this.getImages(),         //get burnt images
+                    this.getImages(),
                     this.getActionPeriod(),
                     this.getAnimationPeriod());
+
+            world.removeEntity(tminer);
+            scheduler.unscheduleAllEvents(tminer);
 
             world.addEntity(nZom);
             nZom.scheduleActions(scheduler, world, imageStore);
         }
+        scheduler.scheduleEvent(this,
+                Factory.createActivityAction(this, world, imageStore),
+                this.getActionPeriod());
     }
+
 
 }

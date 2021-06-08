@@ -11,6 +11,10 @@ blob images/blob9.bmp 255 255 255 0
 blob images/blob10.bmp 255 255 255 0
 blob images/blob11.bmp 255 255 255 0
 blob images/blob12.bmp 255 255 255 0
+burntMiner images/burntMiner1.bmp 252 252 252 0
+burntMiner images/burntMiner2.bmp 252 252 252 0
+burntMiner images/burntMiner3.bmp 252 252 252 0
+burntMiner images/burntMiner4.bmp 252 252 252 0
 fire images/fire1.bmp
 fire images/fire2.bmp
 fire images/fire3.bmp
@@ -21,6 +25,13 @@ fire images/fire7.bmp
 fire images/fire8.bmp
 fire images/fire9.bmp
 fire images/fire10.bmp
+fireZombie images/fireZombie1.bmp
+fireZombie images/fireZombie2.bmp
+fireZombie images/fireZombie3.bmp
+fireZombie images/fireZombie4.bmp
+fireZombie images/fireZombie5.bmp
+fireZombie images/fireZombie6.bmp
+fireZombie images/fireZombie7.bmp
 miner images/miner1.bmp 252 252 252 0
 miner images/miner2.bmp 252 252 252 0
 miner images/miner3.bmp 252 252 252 0
