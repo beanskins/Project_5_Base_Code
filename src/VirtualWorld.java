@@ -55,11 +55,11 @@ public final class VirtualWorld extends PApplet
     public void setup() {
         this.imageStore = new ImageStore(
                 createImageColored(TILE_WIDTH, TILE_HEIGHT,
-                                   DEFAULT_IMAGE_COLOR));
+                        DEFAULT_IMAGE_COLOR));
         this.world = new WorldModel(WORLD_ROWS, WORLD_COLS,
-                                    createDefaultBackground(imageStore));
+                createDefaultBackground(imageStore));
         this.view = new WorldView(VIEW_ROWS, VIEW_COLS, this, world, TILE_WIDTH,
-                                  TILE_HEIGHT);
+                TILE_HEIGHT);
         this.scheduler = new EventScheduler(timeScale);
 
         loadImages(IMAGE_LIST_FILE_NAME, imageStore, this);
@@ -176,18 +176,24 @@ public final class VirtualWorld extends PApplet
     public void mousePressed() {
         Point pressed = mouseToPoint();
 
+        for (int i = -1; i < 2; i++) // makes a 3x3 grid of fire background
+            for (int j = -1; j < 2; j++)
+                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("dirt")));
+
+
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                world.setBackground(new Point(pressed.x + i, pressed.y + j), new Background(imageStore.getImageList("dirt")));
-                if (!(world.isOccupied(new Point(pressed.x + i, pressed.y + j)))) {
-                    AnimatingEntities fire = new Fire("id", new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"), 0, 10);
-                    world.addEntity(Factory.createFire("fire",
-                            new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"),
-                            0, 10));
-                    fire.scheduleActions(scheduler, world, imageStore);
-                }
+                AnimatingEntities fire = new Fire("id", new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"), 0, 10);
+                world.addEntity(Factory.createFire("fire",
+                        new Point(pressed.x + i, pressed.y + j), imageStore.getImageList("fire"),
+                        0, 10));
+                fire.scheduleActions(scheduler, world, imageStore);
             }
         }
+
+
+
+
 
         redraw();
     }
