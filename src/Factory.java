@@ -19,6 +19,7 @@ public class Factory {
         return new MinerBurnt(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
 
+
     public static FireZombie createFireZombie(
             String id,
             Point position,
