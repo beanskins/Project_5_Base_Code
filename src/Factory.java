@@ -29,6 +29,15 @@ public class Factory {
         return new FireZombie(id, position,images,actionPeriod,animationPeriod);
     }
 
+    public static Fire createFire (
+            String id,
+            Point position,
+            List<PImage> images,
+            int actionPeriod,
+            int animationPeriod) {
+        return new Fire(id, position, images, actionPeriod, animationPeriod);
+    }
+
 
     public static Blacksmith createBlacksmith(String id, Point position, List<PImage> images)
     {
