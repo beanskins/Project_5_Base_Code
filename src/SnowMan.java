@@ -69,7 +69,7 @@ public class SnowMan extends MovingEntity{
             FireZombie zombie = (FireZombie)target.get();
 
             MinerNotFull miner = Factory.createMinerNotFull(zombie.getId(),2,zombie.getPosition(),
-                    5, 6, imageStore.getImageList("miner"));
+                    500, 6, imageStore.getImageList("miner"));
 
             world.removeEntity(zombie);
             scheduler.unscheduleAllEvents(zombie);

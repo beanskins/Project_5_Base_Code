@@ -67,6 +67,14 @@ public final class VirtualWorld extends PApplet
         scheduleActions(world, scheduler, imageStore);
 
         nextTime = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+
+        iceMountain iceMountain = new iceMountain("iceMountain", new Point(16, 9), imageStore.getImageList("iceMountain"), 10000);
+        iceMountain.scheduleActions(scheduler, world, imageStore);
+        world.addEntity(iceMountain);
+
+        iceMountain iceMountain2 = new iceMountain("iceMountain", new Point(33, 7), imageStore.getImageList("iceMountain"), 10000);
+        iceMountain2.scheduleActions(scheduler, world, imageStore);
+        world.addEntity(iceMountain2);
     }
 
     public void draw() {
