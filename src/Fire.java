@@ -4,8 +4,14 @@ import java.util.Optional;
 
 public class Fire extends AnimatingEntities{
 
+    private static final int fireSpeedBoost = 700;
+
     public Fire(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
+    }
+
+    public static int getFireSpeedBoost() {
+        return fireSpeedBoost;
     }
 
     protected void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
@@ -13,19 +19,32 @@ public class Fire extends AnimatingEntities{
         Optional<Entity> target =
                 world.findNearest(this.getPosition(), MinerTypes.class);
 
-        if (target.isPresent() && this.getPosition() == target.get().getPosition()){
+        if (target.isPresent() && this.getPosition().equals(target.get().getPosition())){
             MinerTypes tminer = (MinerTypes)target.get();
 
-            MinerBurnt miner = Factory.createMinerBurnt(tminer.getId(),tminer.getPosition(),
-                    tminer.getImages(),         //get burnt images
-                    tminer.getResourceLimit(),
-                    tminer.getActionPeriod(),
-                    tminer.getAnimationPeriod());
+            Optional<Point> open = world.findOpenAround(this.getPosition());
 
-            world.removeEntity(tminer);
-            scheduler.unscheduleAllEvents(tminer);
-            world.addEntity(miner);
-            miner.scheduleActions(scheduler, world, imageStore);
+            if (open.isPresent()) {
+                Point spawn = open.get();
+                MinerBurnt minerBurnt = Factory.createMinerBurnt(tminer.getId(), spawn,
+                        imageStore.getImageList("burntMiner"),
+                        tminer.getResourceLimit(),
+                        tminer.getActionPeriod()-fireSpeedBoost,      //fire speed boost
+                        tminer.getAnimationPeriod());
+
+                world.removeEntity(tminer);
+                scheduler.unscheduleAllEvents(tminer);
+
+                world.addEntity(minerBurnt);
+                minerBurnt.scheduleActions(scheduler, world, imageStore);
+            }
+            else{
+                world.removeEntity(tminer);
+                scheduler.unscheduleAllEvents(tminer);
+            }
+            scheduler.scheduleEvent(this,
+                    Factory.createActivityAction(this, world, imageStore),
+                    this.getActionPeriod());
         }
     }
 
@@ -38,7 +57,7 @@ public class Fire extends AnimatingEntities{
                 Factory.createActivityAction(this, world, imageStore),
                 this.getActionPeriod());
         scheduler.scheduleEvent(this, Factory.createAnimationAction(this,
-                10),
+                0),
                 this.getAnimationPeriod());
     }
 

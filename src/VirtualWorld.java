@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -211,12 +212,21 @@ public final class VirtualWorld extends PApplet
         }
 
         if (!(world.isOccupied(pressed)) || world.getOccupant(pressed).get() instanceof MinerTypes ) {
-            AnimatingEntities fire = new Fire("id", pressed, imageStore.getImageList("fire"), 0, 10);
-            world.addEntity(Factory.createFire("fire",
-                    pressed, imageStore.getImageList("fire"),
-                            0, 10));
-                    fire.scheduleActions(scheduler, world, imageStore);
-           // world.addEntity(Factory.createFireZombie()); //TODO: I added this in as a placeholder because this is where the fire zombie should go
+
+            Optional<Point> open = world.findOpenAround(pressed);
+            if (open.isPresent() && !(world.isOccupied(pressed))) {
+                Point spawn = open.get();
+
+                AnimatingEntities zombie = new FireZombie("fireZombie", spawn, imageStore.getImageList("fireZombie"), 1000, 7);
+                world.addEntity(zombie);
+                zombie.scheduleActions(scheduler,world,imageStore);
+            }
+            AnimatingEntities fire = new Fire("id", new Point(pressed.x, pressed.y), imageStore.getImageList("fire"), 10, 10);
+            fire.executeActivity(world, imageStore, scheduler);
+            fire.scheduleActions(scheduler,world,imageStore);
+            world.addEntity(fire);
+
+
         }
         redraw();
     }
