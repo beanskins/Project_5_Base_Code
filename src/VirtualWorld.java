@@ -221,7 +221,7 @@ public final class VirtualWorld extends PApplet
                 world.addEntity(zombie);
                 zombie.scheduleActions(scheduler,world,imageStore);
             }
-            AnimatingEntities fire = new Fire("id", new Point(pressed.x, pressed.y), imageStore.getImageList("fire"), 10, 10);
+            AnimatingEntities fire = Factory.createFire("id", pressed, imageStore.getImageList("fire"), 10, 10);
             fire.executeActivity(world, imageStore, scheduler);
             fire.scheduleActions(scheduler,world,imageStore);
             world.addEntity(fire);
