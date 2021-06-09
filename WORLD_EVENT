@@ -1,3 +1,29 @@
+1.) World-changing event outcome will depend on what you click on, but all events involve fire or burning.
+    All areas on the map clicked will produce an effect except in the middle of the lake, as nothing can burn there.
 
+2a.) If you click on a miner, he will ignite and the grass around him will be dried up.
+2b.) If you click on an open grassy spot (or snowy spot discussed later) the grass (or snow) around the site clicked
+     will be dried up and a fire will spawn where you clicked. If there is an open space around where you clicked a
+     fire zombie will spawn.
 
-Snowman created by Dion Nijholt
+3a.) Since the miner is burnt he will drop all his ores and run as fast as he can to the nearest water source to
+     cool off, and then return to his usual task.
+3b.) The fire spawned will now act as an obstacle blocking the path of all creatures except fire zombies.
+
+4a.) The new entity, fire zombie, will walk slower than the miners and will chase any type of miner in hopes of
+     turning them into a fire zombie.
+4b.) There are a couple of pre-existing snowy mountains that act as an obstacle and periodically spawn snowmen.
+4c.) Snowmen exist with the sole purpose to turn fire zombies into miners. This purpose drives them to the point of
+     giving their life to dowse a fire zombie and turn the zombie into a miner. These newly revived miners are so
+     grateful for the snowman’s sacrifice that they complete their tasks of ore retrieval at a faster rate than most
+     other miners. The selfless snowman is not forgotten though, as the ground beneath the revival site becomes
+     covered with slush.
+
+5a.) Ian Beck- Responsible for mouse click location, background transformation upon click, and fire spawn upon click.
+     Also responsible for creating artwork for the snowy mountain, modifying artwork for the burnt miner, and finding
+     artwork for the flame. Created and implemented the snowy mountain functionality, as well as brainstorming for the
+     functionality of other entities.
+5b.) Ethan Mankins- Responsible for creating and implementing the fire, snowman, and fire zombie class and each of
+     their functionality. Created and brainstormed functionality of all classes alongside Ian. Also responsible for
+     new entity pathing and spawning, except for fire on click and snowy mountain. Created artwork for the snowman
+     and helped design artwork for the fire zombie with an outside source.
