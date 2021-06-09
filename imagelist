@@ -26,13 +26,11 @@ fire images/fire7.bmp
 fire images/fire8.bmp
 fire images/fire9.bmp
 fire images/fire10.bmp
-fireZombie images/fireZombie1.bmp
-fireZombie images/fireZombie2.bmp
-fireZombie images/fireZombie3.bmp
-fireZombie images/fireZombie4.bmp
-fireZombie images/fireZombie5.bmp
-fireZombie images/fireZombie6.bmp
-fireZombie images/fireZombie7.bmp
+fireZombie images/fireZombie1.bmp 0 0 0 0
+fireZombie images/fireZombie2.bmp 0 0 0 0
+fireZombie images/fireZombie3.bmp 0 0 0 0
+fireZombie images/fireZombie4.bmp 0 0 0 0
+iceMountain images/iceMountain.bmp 0 0 0 0
 miner images/miner1.bmp 252 252 252 0
 miner images/miner2.bmp 252 252 252 0
 miner images/miner3.bmp 252 252 252 0
@@ -44,6 +42,11 @@ quake images/quake3.bmp 255 255 255 0
 quake images/quake4.bmp 255 255 255 0
 quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
+snowman images/snowman1.bmp
+snowman images/snowman2.bmp
+snowman images/snowman3.bmp
+snowman images/snowman4.bmp
+snowman images/snowman5.bmp
 ore images/ore.bmp 201 26 26 0
 obstacle images/obstacle.bmp
 grass images/grass.bmp
