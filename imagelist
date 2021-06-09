@@ -41,6 +41,11 @@ quake images/quake3.bmp 255 255 255 0
 quake images/quake4.bmp 255 255 255 0
 quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
+snowman images/snowman1.bmp
+snowman images/snowman2.bmp
+snowman images/snowman3.bmp
+snowman images/snowman4.bmp
+snowman images/snowman5.bmp
 ore images/ore.bmp 201 26 26 0
 obstacle images/obstacle.bmp
 grass images/grass.bmp

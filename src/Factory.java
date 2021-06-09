@@ -8,6 +8,17 @@ public class Factory {
     private static final int QUAKE_ACTION_PERIOD = 1100;
     private static final int QUAKE_ANIMATION_PERIOD = 100;
 
+    public static SnowMan createSnowMan(
+            String id,
+            Point position,
+            List<PImage> images,
+            int actionPeriod,
+            int animationPeriod
+    ){
+        return new SnowMan(id, position,images,actionPeriod,animationPeriod);
+    }
+
+
     public static MinerBurnt createMinerBurnt(
             String id,
             Point position,
@@ -18,7 +29,6 @@ public class Factory {
     {
         return new MinerBurnt(id, position, images, resourceLimit, actionPeriod, animationPeriod);
     }
-
 
     public static FireZombie createFireZombie(
             String id,
